@@ -27,7 +27,14 @@
     "prepublish": "nsp check",
     "pretest": "eslint .",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test":
+      "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "format": "prettier --write",
+    "format:all":
+      "prettier --write \"{bin,lib,test}/**/*.js\" \"!**/expected/**\"",
+    "coverage": "./node_modules/.bin/nyc npm run test",
+    "coveralls":
+      "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls"
   },
   "lint-staged": {
     "*.js": ["eslint --fix", "git add"],
