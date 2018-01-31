@@ -29,14 +29,11 @@
     "pretest": "eslint .",
     "precommit": "lint-staged",
     "test": "jest",
-    "testcoverage":
-      "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "prettier --write",
     "format:all":
       "prettier --write \"{bin,lib,test}/**/*.js\" \"!**/expected/**\"",
-    "coverage": "./node_modules/.bin/nyc npm run testcoverage",
-    "coveralls":
-      "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls"
+    "test-ci":
+      "jest --config config.json --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "lint-staged": {
     "*.js": ["eslint --fix", "git add"],
